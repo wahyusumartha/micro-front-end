@@ -1,6 +1,8 @@
 import React from 'react';
 import { Switch, Route, Router } from 'react-router-dom';
 import { StylesProvider, createGenerateClassName } from '@material-ui/core/styles';
+import Signin from './components/Signin';
+import Signup from './components/Signup';
 
 const generateClassname = createGenerateClassName({
     productionPrefix: 'au'
@@ -8,8 +10,13 @@ const generateClassname = createGenerateClassName({
 
 export default ({ history }) => {
     return (
-        <div>
-            <h1>Hi This is auth micro front ends</h1>
-        </div>
-    )
+        <StylesProvider generateClassName={generateClassname}>
+            <Router history={history}>
+                <Switch>
+                    <Route path="/auth/signin" component={Signin} />
+                    <Route path="/auth/signup" component={Signup} />
+                </Switch>
+            </Router>
+        </StylesProvider>
+    );
 }
